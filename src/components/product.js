@@ -64,7 +64,8 @@ const Contain=styled.div`
     background:white;
 `;
 const Container = styled.div`
-margin-left:35px
+margin-left:35px;
+margin-bottom:60px;
 `;
 const Image = styled.div`
     margin:5px;

@@ -16,8 +16,8 @@ router.route('/')
         const pr=pro.concat(Fashion);
         const pod=await productt.find({});
         const p=pr.concat(pod);
-        if(p){
-            res.status(200).json({data:p})
+        if(pod){
+            res.status(200).json({data:pod})
         }else{
             res.status(404).json({error:"we dont find any product"});
         }
