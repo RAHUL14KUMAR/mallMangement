@@ -2,33 +2,10 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import styled from "styled-components";
-import { useStateValue } from "../StateProvider";
-import axios from '../axios';
 
-function Product({id,title,price,image,description}) {
+function Products({id,title,price,image,description,quantity}) {
 
   const [show, setShow] = useState(false);
-  const [ip,setIp]=useState("");
-  const [{ basket },dispatch]=useStateValue();
-
-  const addToBasket=async(e)=>{
-    e.preventDefault();
-    dispatch({
-      type:"ADD_TO_BASKET",
-        item:{
-          id, 
-          title,
-          price,
-          image,
-          description
-        }
-    })
-    // setIp(id);
-     const prod= await axios.put(`/all/api/${id}`);
-     console.log(prod.data);
-  }
-  // console.log(ip);
-
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -40,11 +17,11 @@ function Product({id,title,price,image,description}) {
       </Image>
       <Description>
         <h5 class='text-center'>{title}</h5>
+        <p class='text-center'>id-{id}</p>
         <p class='text-center'>₹ {price}</p>
-        {/* <p class='text-center'></p> */}
+        <p class='text-center'>quantity-{quantity}</p>
         <div style={{display:'flex'}} class="mx-5">
-          <button style={{margin:5}} class="btn btn-warning" onClick={addToBasket}>Add to Cart</button>
-          <button style={{margin:5}} class="btn btn-success" onClick={handleShow}>details</button>
+          <button style={{margin:5,marginLeft:5+'em'}} class="btn btn-success" onClick={handleShow}>details</button>
           <Modal show={show} onHide={handleClose} backdrop='static'>
             <Modal.Header closeButton>
               <Modal.Title><h3>{title}</h3></Modal.Title>
@@ -85,4 +62,4 @@ const Image = styled.div`
 const Description = styled.div`
  
 `;
-export default Product
+export default Products

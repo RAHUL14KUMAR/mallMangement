@@ -17,6 +17,9 @@ const productt=new Schema({
     description:{
         type:String,
         required:true
+    },
+    quantity:{
+        type:Number
     }
 })
 module.exports=mongoose.model('allproducts',productt); 

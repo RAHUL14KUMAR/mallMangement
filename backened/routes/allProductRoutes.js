@@ -63,10 +63,21 @@ router.route('/:id')
         res.status(200).send("product is deleted successfully")
         
     }catch(err){
-       console.log(err);
-        // res.status(500).send({error:"we get the error from deletetoy product"});
+    //    console.log(err);
+        res.status(500).send({error:"we get the error from deletetoy product"});
     }
 
+})
+router.route('/api/:ip')
+.put(async(req,res)=>{
+    try{
+        const  id=req.params.ip.toString();
+        const revirew=await productt.findByIdAndUpdate(id,{$inc:{quantity:-1}},{new:true,upsert:true})
+        res.status(200).json(revirew);
+    }catch(error){
+        res.status(500).send({message:error.message})
+        console.log(error);
+    }
 })
 
 module.exports=router;

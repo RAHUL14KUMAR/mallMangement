@@ -12,7 +12,7 @@ import Register from './components/register';
 import Add from './components/addProduct';
 import Delete from './components/deleteProduct';
 import Sales from './components/salesRegister';
-import ProductsRegister from './components/adminWork/productRegister';
+import ProductsRegister from './components/productRegister';
 function App() {
   return (
     <BrowserRouter className="App">
