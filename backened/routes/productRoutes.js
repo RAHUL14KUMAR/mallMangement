@@ -32,18 +32,4 @@ router.route('/')
         console.log(error);
     }
 })
-router.route('/:id')
-.delete(async(req,res)=>{
-    try{
-        const id=req.params.id;
-        const prod=await product.findByIdAndRemove(id);
-        if(prod){
-            res.status(200).send({data:prod})
-        }else{
-            res.status(404).send({error:"productNotFound"})
-        }
-    }catch(error){
-        res.status(500).send({error:"we get the error from deletetoy product"})
-    }
-})
 module.exports=router

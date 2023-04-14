@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Cart from './deleteCart';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css'; 
-
+import {useNavigate} from 'react-router-dom';
 
 const responsive = {
   desktop: {
@@ -23,6 +23,7 @@ const responsive = {
   }
 };
 function DeleteProduct() {
+  const navigate=useNavigate();
   const [id,setId]=useState("");
   const [item,setItem]=useState([]);
 
@@ -34,12 +35,14 @@ const fetchData=async()=>{
     console.log(product.data.data);
     setItem(product.data.data);
 }
-const remove=()=>{
-  const index=item.findIndex(element=>element._id===id);
-  if(index>=0){
-    item.splice(index,1);
-    alert("we delete the item");
-  }
+
+console.log(id);
+const removing=async()=>{
+  const res=await axios.delete(`/all/${id}`);
+  console.log(res);
+  alert("product from this id get deleted");
+  // navigate("/all");
+  setId("");
 }
   return (
     <Contain>
@@ -50,7 +53,7 @@ const remove=()=>{
             <form style={{margin:'auto',padding:15+'px'}} >
               <label for='id' class='text-success'>OBJECT ID:</label>
               <input id="id" type='text' class='border border-danger' placeholder='objectId'value={id} onChange={(e)=>setId(e.target.value)} />
-              <button type="button" style={{marginLeft:2+'px',marginTop:10+'px'}} class="btn btn-success" onClick={remove}>Delete Product</button> 
+              <button type="button" style={{marginLeft:2+'px',marginTop:10+'px'}} class="btn btn-success" onClick={removing}>Delete Product</button> 
             </form>
             <img src='https://th.bing.com/th?id=OIP.xB3q5BVA5wyKFXruRbxLEQHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2' style={{width:200+'px',marginLeft:85+'px'}} />
           </Box>

@@ -9,13 +9,13 @@ const router=express.Router();
 router.route('/')
 .get(async(req,res)=>{
     try{
-        const prod=await product.find({});
-        const Toy=await toy.find({});
-        const pro=prod.concat(Toy);
-        const Fashion=await fashion.find({});
-        const pr=pro.concat(Fashion);
+        // const prod=await product.find({});
+        // const Toy=await toy.find({});
+        // const pro=prod.concat(Toy);
+        // const Fashion=await fashion.find({});
+        // const pr=pro.concat(Fashion);
         const pod=await productt.find({});
-        const p=pr.concat(pod);
+        // const p=pr.concat(pod);
         if(pod){
             res.status(200).json({data:pod})
         }else{
@@ -54,6 +54,19 @@ router.route('/')
         res.status(500).json({error:"we gwt error from all products post routes",error})
     }
 })
+router.route('/:id')
+.delete(async(req,res)=>{
+    try{
+        const  id=req.params.id;
+        console.log(id);
+        await productt.findByIdAndRemove(id);
+        res.status(200).send("product is deleted successfully")
+        
+    }catch(err){
+       console.log(err);
+        // res.status(500).send({error:"we get the error from deletetoy product"});
+    }
 
+})
 
 module.exports=router;

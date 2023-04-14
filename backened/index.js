@@ -10,6 +10,7 @@ const fashionRouter=require('./routes/fashionRoute');
 const adminRouter=require('./routes/adminRoutes');
 const allProduct=require('./routes/allProductRoutes');
 const orderRouter=require('./routes/orderRoutes');
+// const deleteProduct=require('./routes/deleteProduct');
 
 const shortid = require("shortid");
 const Razorpay = require("razorpay");
@@ -39,7 +40,7 @@ app.use('/toy',toyProdRouter);
 app.use('/fashion',fashionRouter);
 app.use('/all',allProduct);
 app.use('/order',orderRouter);
-// /login/
+
 app.post("/razorpay", async (req, res) => {
     const payment_capture = 1;
     const amount = 499;
