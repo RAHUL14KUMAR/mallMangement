@@ -1,5 +1,5 @@
 import './App.css';
-import Header from './components/Home';
+import Headers from './components/Home';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Order from './components/userOrder';
 import Product from './components/allProducts'
@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route path='/' element={<Header/>}/>
+        <Route path='/' element={<Headers/>}/>
         <Route path='/all' element={<Product/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
